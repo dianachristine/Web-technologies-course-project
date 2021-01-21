@@ -1,0 +1,73 @@
+<ul class="alert" id="error-block" tpl-foreach="$errors as $error">
+    <li><strong>{{$error}}</strong></li>
+</ul>
+
+<form action="../index.php" method="post">
+    <input type="hidden" name="cmd" value="{{ $cmd }}" >
+    <table>
+        <input type="hidden" name="previous-author1" value="{{count($book->authors) > 0 ? $book->authors[0]->id : ''}}"/>
+        <input type="hidden" name="previous-author2" value="{{count($book->authors) > 1 ? $book->authors[1]->id : ''}}>"/>
+        <tr>
+            <td><label for="heading">Pealkiri: </label></td>
+            <td><input type="text" name="title" id="heading" value="{{$book->title}}"> </td>
+        </tr>
+        <tr>
+            <td><label for="author1">Autor 1:</label></td>
+            <td>
+                <select id="author1" name="author1" class="author-options">
+                    <option></option>
+                    <div tpl-foreach="$authors as $author">
+                        <option tpl-selected="$book->authors[0]->id == $author->id" value="{{$author->id}}">{{$author->firstName}} {{$author->lastName}}</option>
+                    </div>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="author2">Autor 2:</label></td>
+            <td>
+                <select id="author2" name="author2" class="author-options">
+                    <option></option>
+                    <div tpl-foreach="$authors as $author">
+                        <option tpl-selected="$book->authors[1]->id == $author->id" value="{{$author->id}}">{{$author->firstName}} {{$author->lastName}}</option>
+                    </div>
+                </select>
+            </td>
+        </tr>
+        <tr id="book-grade">
+            <td><label for="book-grade">Hinne: </label></td>
+            <td class="grade-options">
+                <tpl tpl-foreach="range(1, 5) as $grade">
+                    <input type="radio"
+                           name="grade"
+                           tpl-checked="$grade == $book->grade"
+                           value="{{$grade}}"> {{$grade}}
+                </tpl>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="is-read">Loetud:</label></td>
+            <td>
+                <input name="isRead"
+                       id="is-read"
+                       tpl-checked="$book->isRead"
+                       value="1"
+                       type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <input type="hidden" name="originalTitle" value="{{$book->title}}"/>
+            <input type="hidden" name="id" value="{{$book->id}}"/>
+            <td colspan="2"><input type="submit" name="submitButton" class="submit-button" value="Muuda"></td>
+        </tr>
+    </table>
+</form>
+
+<form  action="../index.php" method="post">
+    <input type="hidden" name="cmd" value="delete_book">
+    <table>
+        <tr>
+            <input type="hidden" name="book-to-delete" value="{{$book->id}}">
+            <td colspan="2"><input type="submit" name="deleteButton" class="delete-button" value="Kustuta"></td>
+        </tr>
+    </table>
+</form>

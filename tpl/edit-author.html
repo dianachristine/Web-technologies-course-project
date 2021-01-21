@@ -1,0 +1,43 @@
+<ul class="alert" id="error-block" tpl-foreach="$errors as $error">
+    <li><strong>{{$error}}</strong></li>
+</ul>
+
+<form action="../index.php" method="post">
+    <input type="hidden" name="cmd" value="{{ $cmd }}" >
+    <table>
+        <tr>
+            <td><label for="first-name">Eesnimi: </label></td>
+            <td><input type="text" id="first-name" name="firstName" value="{{$author->firstName}}"></td>
+        </tr>
+        <tr>
+            <td><label for="last-name">Perekonnanimi: </label></td>
+            <td><input type="text" id="last-name" name="lastName" value="{{$author->lastName}}"></td>
+        </tr>
+        <tr id="author-grade">
+            <td><label for="author-grade">Hinne: </label></td>
+            <td class="grade-options">
+                <tpl tpl-foreach="range(1, 5) as $grade">
+                    <input type="radio"
+                           name="grade"
+                           tpl-checked="$grade == $author->grade"
+                           value="{{$grade}}"> {{$grade}}
+                </tpl>
+            </td>
+        </tr>
+        <tr>
+            <input type="hidden" name="id" value="{{$author->id}}"/>
+            <input type="hidden" name="originalFirstName" value="{{$author->firstName}}"/>
+            <td colspan="2"><input type="submit" name="submitButton" class="submit-button" value="Muuda"></td>
+        </tr>
+    </table>
+</form>
+
+<form  action="../index.php" method="post">
+    <input type="hidden" name="cmd" value="delete_author">
+    <table>
+        <tr>
+            <input type="hidden" name="author-to-delete" value="{{$author->id}}">
+            <td colspan="2"><input type="submit" name="deleteButton" class="delete-button" value="Kustuta"></td>
+        </tr>
+    </table>
+</form>

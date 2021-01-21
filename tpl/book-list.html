@@ -1,0 +1,27 @@
+<ul class="alert" id="message-block" tpl-foreach="$messages as $message">
+    <li>{{$message}}</li>
+</ul>
+
+<table>
+    <thead>
+    <tr>
+        <th>Pealkiri</th>
+        <th>Autorid</th>
+        <th class="th-grade">Hinne</th>
+    </tr>
+    </thead>
+    <tbody class="list">
+    <div tpl-foreach="$books as $book">
+         <tr>
+            <td><a href="../index.php?cmd=edit_book&id={{$book->id}}">{{$book->title}}</a></td>
+            <td>
+                <tpl tpl-foreach="$book->authors as $author">
+                    {{$author->firstName}}
+                    {{$author->lastName}}<tpl tpl-if="!$last">,</tpl>
+                </tpl>
+            </td>
+            <td tpl-if="$book->grade > 0">{{$book->grade}}</td>
+        </tr>
+    </div>
+    </tbody>
+</table>

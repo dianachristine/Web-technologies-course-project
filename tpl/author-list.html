@@ -1,0 +1,22 @@
+<ul class="alert" id="message-block" tpl-foreach="$messages as $message">
+    <li>{{$message}}</li>
+</ul>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nimi</th>
+        <th>Perekonnanimi</th>
+        <th class="th-grade">Hinne</th>
+    </tr>
+    </thead>
+    <tbody class="list">
+    <div tpl-foreach="$authors as $author">
+        <tr>
+            <td><a href="../index.php?cmd=edit_author&id={{$author->id}}">{{$author->firstName}}</a></td>
+            <td>{{$author->lastName}}</td>
+            <td  tpl-if="$author->grade > 0">{{$author->grade}}</td>
+        </tr>
+    </div>
+    </tbody>
+</table>
