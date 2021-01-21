@@ -4,13 +4,22 @@ Web app for showing books and authors lists.
 Books and authors can be added/edited/deleted.
 
 Show books:
-![alt text](https://gyazo.com/58e12273d8705af50f5b86952df1030e)
+![show books](books_list.png)
 
-Add books: 
-![alt text](https://gyazo.com/c99da59ff4cf4a3cb5e6e89b6b4dfa7d)
+Add book: 
+![add book](add_book.png)
 
 Edit/delete book:
-![alt text](https://gyazo.com/a88c59ef699d8a2ee723e33c82d0d0e7)
+![edit/delete book](edit_delete_book.png)
+
+Show authors:
+![show authors](authors_list.png)
+
+Add author: 
+![add author](add_author.png)
+
+Edit/delete author:
+![edit/delete author](edit_delete_author.png)
 
 
 Templates are from:  
